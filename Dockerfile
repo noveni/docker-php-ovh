@@ -72,4 +72,3 @@ RUN { \
     } >> /usr/local/etc/php/conf.d/xdebug.ini
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
-RUN composer -v
