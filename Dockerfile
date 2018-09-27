@@ -1,4 +1,4 @@
-FROM php:7.1-fpm
+FROM php:5.6.38-apache
 
 RUN apt-get update && apt-get install -y \
                                 apt-utils \
@@ -61,7 +61,6 @@ RUN docker-php-ext-install bcmath \
                             zip
 
 RUN docker-php-ext-enable imagick \
-                        memcached \
                         mongodb \
                         redis
 
