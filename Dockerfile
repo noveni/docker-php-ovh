@@ -65,7 +65,6 @@ RUN docker-php-ext-enable imagick \
                         mongodb \
                         redis
 
-RUN apt-get update && apt-get install -y php7.0-intl
 RUN docker-php-ext-configure intl && docker-php-ext-install intl
 
 RUN { \
