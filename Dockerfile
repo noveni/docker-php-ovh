@@ -72,7 +72,7 @@ RUN pecl install redis-5.1.1 \
 # Use the default production configuration
 
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
-COPY php.ini /usr/local/etc/php/phpcustom.ini
+COPY config/php.ini /usr/local/etc/php/phpcustom.ini
 
 WORKDIR /var/www/
 
