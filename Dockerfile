@@ -66,6 +66,7 @@ RUN docker-php-ext-install xmlrpc
 RUN docker-php-ext-install opcache
 RUN apt-get install -y libzip-dev
 RUN docker-php-ext-install zip
+RUN apt-get install -y git
 
 RUN pecl install redis-5.1.1 \
     && pecl install xdebug-2.8.1 \
