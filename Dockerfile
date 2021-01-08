@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.3-fpm
 RUN apt-get update && apt-get install -y \
                                 apt-utils \
                                 libbz2-dev \
@@ -64,6 +64,7 @@ RUN docker-php-ext-install wddx
 RUN docker-php-ext-install xsl
 RUN docker-php-ext-install xmlrpc
 RUN docker-php-ext-install opcache
+RUN apt-get install -y libzip-dev
 RUN docker-php-ext-install zip
 
 RUN pecl install redis-5.1.1 \
