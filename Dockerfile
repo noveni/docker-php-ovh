@@ -66,12 +66,13 @@ RUN docker-php-ext-install xmlrpc
 RUN docker-php-ext-install opcache
 RUN apt-get install -y libzip-dev
 RUN docker-php-ext-install zip
-RUN apt-get install -y git
 
 RUN pecl install redis-5.1.1 \
     && pecl install xdebug-2.8.1 \
     && docker-php-ext-enable redis xdebug
 # Use the default production configuration
+
+RUN apt-get install -y git
 
 RUN echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini;
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
