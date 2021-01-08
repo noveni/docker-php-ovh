@@ -72,6 +72,8 @@ RUN pecl install redis-5.1.1 \
     && docker-php-ext-enable redis xdebug
 # Use the default production configuration
 
+RUN apt-get install -y git
+
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 COPY config/php.ini /usr/local/etc/php/phpcustom.ini
 
