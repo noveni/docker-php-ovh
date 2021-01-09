@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:7.4-fpm
 RUN apt-get update && apt-get install -y \
                                 apt-utils \
                                 libbz2-dev \
@@ -15,11 +15,11 @@ RUN docker-php-ext-install exif
 RUN docker-php-ext-install ftp
 
 RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg
 
 RUN docker-php-ext-install -j$(nproc) gd
 RUN docker-php-ext-install gettext
-RUN apt install -y libgmp-dev
+RUN apt-get install -y libgmp-dev
 
 RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
 
@@ -36,11 +36,12 @@ RUN apt-get install -y \
                 libkrb5-dev
 RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl
 RUN docker-php-ext-install imap
-RUN apt install -y libicu-dev
+RUN apt-get install -y libicu-dev
 RUN docker-php-ext-install -j$(nproc) intl
 RUN docker-php-ext-install intl
+RUN apt-get install -y libonig-dev
 RUN docker-php-ext-install mbstring
-RUN apt install -y libmcrypt-dev
+RUN apt-get install -y libmcrypt-dev
 
 RUN apt-get update && apt-get install -y libmemcached-dev zlib1g-dev
 
@@ -60,7 +61,6 @@ RUN docker-php-ext-install sockets
 RUN docker-php-ext-install sysvmsg
 RUN docker-php-ext-install sysvsem
 RUN docker-php-ext-install sysvshm
-RUN docker-php-ext-install wddx
 RUN docker-php-ext-install xsl
 RUN docker-php-ext-install xmlrpc
 RUN docker-php-ext-install opcache
