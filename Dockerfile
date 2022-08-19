@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM php:8.0-fpm
 RUN apt-get update && apt-get install -y \
                                 apt-utils \
                                 libbz2-dev \
@@ -62,7 +62,7 @@ RUN docker-php-ext-install sysvmsg
 RUN docker-php-ext-install sysvsem
 RUN docker-php-ext-install sysvshm
 RUN docker-php-ext-install xsl
-RUN docker-php-ext-install xmlrpc
+RUN docker-php-ext-install xml
 RUN docker-php-ext-install opcache
 RUN apt-get install -y libzip-dev
 RUN docker-php-ext-install zip
@@ -72,8 +72,8 @@ RUN apt-get update && \
     # locales
     apt-get install -y locales locales-all
 
-RUN pecl install redis-5.1.1 \
-    && pecl install xdebug-2.8.1 \
+RUN pecl install redis
+RUN pecl install xdebug \
     && docker-php-ext-enable redis xdebug
 # Use the default production configuration
 
