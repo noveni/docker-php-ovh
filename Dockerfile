@@ -67,6 +67,11 @@ RUN docker-php-ext-install opcache
 RUN apt-get install -y libzip-dev
 RUN docker-php-ext-install zip
 
+# install localisation
+RUN apt-get update && \
+    # locales
+    apt-get install -y locales locales-all
+
 RUN pecl install redis-5.1.1 \
     && pecl install xdebug-2.8.1 \
     && docker-php-ext-enable redis xdebug
@@ -81,3 +86,5 @@ COPY config/php.ini /usr/local/etc/php/phpcustom.ini
 WORKDIR /var/www/
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
+
+# https://towardsdatascience.com/slimming-down-your-docker-images-275f0ca9337e
