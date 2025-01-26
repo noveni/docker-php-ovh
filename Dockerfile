@@ -72,7 +72,8 @@ RUN apt-get update && \
     # locales
     apt-get install -y locales locales-all
 
-RUN pecl install redis-5.1.1 \
+RUN update-channels \
+    pecl install redis-5.1.1 \
     && pecl install xdebug-2.8.1 \
     && docker-php-ext-enable redis xdebug
 # Use the default production configuration
